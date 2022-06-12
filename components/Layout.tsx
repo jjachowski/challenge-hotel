@@ -11,7 +11,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Flex
         w={['100%', '100%', '100%', '64rem']}
         align='center'
-        // bg='blackAlpha.300'
         justifyContent='center'
         direction='column'
       >

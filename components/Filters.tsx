@@ -1,5 +1,6 @@
 import { Flex, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import { DarkModeSwitch } from './DarkModeSwitch';
 // import { Rating } from 'react-simple-star-rating';
 import { PeopleCountInput } from './PeopleCountInput';
 import { StarRating } from './StarRating';
@@ -32,10 +33,12 @@ export const Filters: React.FC<FiltersProps> = ({ onChange }) => {
       p={4}
       px={[10, 10, 4]}
       rounded='xl'
-      mb={8}
+      mb={['-30px', '-30px', 8]}
       justifyContent='space-around'
       alignItems='center'
-      h={['200px', '200px', 'fit-content']}
+      h={['200px', '200px', '70px']}
+      position='relative'
+      top={['-50px', '-50px', '-35px']}
     >
       <StarRating onChange={(val) => setRating(val)} />
       <PeopleCountInput label='adults' onChange={(val) => setAdults(val)} />

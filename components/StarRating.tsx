@@ -1,10 +1,12 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { HStack } from '@chakra-ui/react';
+import { Box, HStack } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
 interface StarRatingProps {
   numberOfStars?: number;
-  onChange: (value: number) => void;
+  isStatic?: boolean;
+  onChange?: (value: number) => void;
+  initialValue?: number;
 }
 
 const isYellow = (index: number, rating: number, hoveredOn: number) => {
@@ -16,9 +18,26 @@ const isYellow = (index: number, rating: number, hoveredOn: number) => {
 export const StarRating: React.FC<StarRatingProps> = ({
   numberOfStars = 5,
   onChange,
+  isStatic,
+  initialValue = 0,
 }) => {
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(initialValue ?? 0);
   const [hoveredOn, setHoveredOn] = useState<number>(-1);
+
+  if (isStatic) {
+    return (
+      <HStack>
+        {[...Array(numberOfStars)].map((x, i) => (
+          <StarIcon
+            key={i}
+            h={6}
+            w={6}
+            color={i < initialValue ? 'yellow' : undefined}
+          />
+        ))}
+      </HStack>
+    );
+  }
 
   const stars = [...Array(numberOfStars)].map((x, i) => (
     <StarIcon
@@ -31,7 +50,7 @@ export const StarRating: React.FC<StarRatingProps> = ({
       color={isYellow(i, rating, hoveredOn)}
       onClick={() => {
         setRating(i);
-        onChange(i + 1);
+        onChange && onChange(i + 1);
       }}
     />
   ));

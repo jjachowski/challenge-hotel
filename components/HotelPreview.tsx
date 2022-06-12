@@ -7,6 +7,7 @@ import { Room } from '../types/hotelRooms';
 import { Requirements } from './Filters';
 import { ImageGallery } from './ImageGallery';
 import { RoomPreviewList } from './RoomPreviewList';
+import { StarRating } from './StarRating';
 
 interface HotelPreviewProps {
   hotel: Hotel;
@@ -54,10 +55,12 @@ export const HotelPreview: React.FC<HotelPreviewProps> = ({
       <Flex direction={['column', 'row']} mb={[4, 8]}>
         <ImageGallery images={hotel.images} />
 
-        <Box ml={[0, 4]}>
-          <Heading size='xl' mb={4}>
-            {hotel.name}
-          </Heading>
+        <Box ml={[0, 4]} w='100%'>
+          <Flex justifyContent='space-between' w='100%' mb={4}>
+            <Heading size='xl'>{hotel.name}</Heading>
+            <StarRating isStatic initialValue={3} />
+          </Flex>
+
           <Heading size='md' mb={2}>
             {hotel.address1}
           </Heading>
