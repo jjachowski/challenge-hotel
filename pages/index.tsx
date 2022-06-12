@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { getHotels } from '../api/hotels';
 import { DarkModeSwitch } from '../components/DarkModeSwitch';
-import { Filters } from '../components/Filters';
 import { HotelList } from '../components/HotelList';
 import { Layout } from '../components/Layout';
 import styles from '../styles/Home.module.scss';

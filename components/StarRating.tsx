@@ -1,6 +1,6 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { HStack, VStack } from '@chakra-ui/react';
-import React, { useCallback, useEffect, useState } from 'react';
+import { HStack } from '@chakra-ui/react';
+import React, { useState } from 'react';
 
 interface StarRatingProps {
   numberOfStars?: number;
@@ -32,7 +32,6 @@ export const StarRating: React.FC<StarRatingProps> = ({
       onClick={() => {
         setRating(i);
         onChange(i + 1);
-        console.log('picked: ', i + 1);
       }}
     />
   ));

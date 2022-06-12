@@ -4,16 +4,15 @@ import React, { useEffect, useState } from 'react';
 import { PeopleCountInput } from './PeopleCountInput';
 import { StarRating } from './StarRating';
 
-export type PeopleCount = {
+export type Requirements = {
   adults: number;
   children: number;
+  rating: number;
 };
 
 interface FiltersProps {
-  onChange: (newCount: PeopleCount) => void;
+  onChange: (newCount: Requirements) => void;
 }
-
-const fillColorArray = ['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045'];
 
 export const Filters: React.FC<FiltersProps> = ({ onChange }) => {
   const bgColor = useColorModeValue('blue.200', 'blue.900');
@@ -22,19 +21,23 @@ export const Filters: React.FC<FiltersProps> = ({ onChange }) => {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    onChange({ adults, children });
-  }, [adults, children]);
+    onChange({ adults, children, rating });
+  }, [adults, children, rating]);
 
   return (
     <Flex
-      w='100%'
+      direction={['column', 'column', 'row']}
+      w={['fit-content', 'fit-content', '100%']}
       bg={bgColor}
       p={4}
+      px={[10, 10, 4]}
       rounded='xl'
-      direction={['column', 'row']}
       mb={8}
+      justifyContent='space-around'
+      alignItems='center'
+      h={['200px', '200px', 'fit-content']}
     >
-      <StarRating onChange={(value) => setRating(value)} />
+      <StarRating onChange={(val) => setRating(val)} />
       <PeopleCountInput label='adults' onChange={(val) => setAdults(val)} />
       <PeopleCountInput label='children' onChange={(val) => setChildren(val)} />
     </Flex>

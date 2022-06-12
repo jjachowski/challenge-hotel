@@ -3,15 +3,14 @@ import React, { useEffect, useState } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { getHotelRooms } from '../api/hotels';
 import { Hotel } from '../types/hotel';
-import { ImageGallery } from './ImageGallery';
 import { Room } from '../types/hotelRooms';
-import { RoomPreview } from './RoomPreview';
+import { Requirements } from './Filters';
+import { ImageGallery } from './ImageGallery';
 import { RoomPreviewList } from './RoomPreviewList';
-import { PeopleCount } from './Filters';
 
 interface HotelPreviewProps {
   hotel: Hotel;
-  requirements: PeopleCount;
+  requirements: Requirements;
 }
 
 export const HotelPreview: React.FC<HotelPreviewProps> = ({
@@ -40,11 +39,10 @@ export const HotelPreview: React.FC<HotelPreviewProps> = ({
     }
   }, [hotel.id, requirements]);
 
-  if (rooms.length === 0) return <></>;
+  if (rooms.length === 0) return null;
 
   return (
     <Flex
-      // bg='whiteAlpha.300'
       bg={bgColor}
       mb={[4, 8]}
       p={[4, 8]}
@@ -73,12 +71,6 @@ export const HotelPreview: React.FC<HotelPreviewProps> = ({
       <Heading size='sm'>Description</Heading>
       <Box mb={[4, 8]}>{hotel.description}</Box>
       <Heading size='sm'>Rooms</Heading>
-
-      {/* <Flex direction='column'>
-        {rooms?.map((room) => (
-          <RoomPreview key={room.id} room={room} />
-        ))}
-      </Flex> */}
       <RoomPreviewList rooms={rooms} />
     </Flex>
   );

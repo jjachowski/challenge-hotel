@@ -19,7 +19,7 @@ export const PeopleCountInput: React.FC<PeopleCountInputProps> = ({
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
       step: 1,
-      defaultValue: 1,
+      defaultValue: 0,
       min: 0,
       max: 6,
       precision: 0,
@@ -32,7 +32,9 @@ export const PeopleCountInput: React.FC<PeopleCountInputProps> = ({
 
   return (
     <HStack>
-      <Heading size='sm'>{label}</Heading>
+      <Heading size='sm' w='80px'>
+        {label}
+      </Heading>
       <Button {...dec}>-</Button>
       <Input {...input} maxW='60px' textAlign='center' />
       <Button {...inc}>+</Button>

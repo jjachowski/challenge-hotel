@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { Hotel } from '../types/hotel';
-import { Filters, PeopleCount } from './Filters';
+import { Filters, Requirements } from './Filters';
 import { HotelPreview } from './HotelPreview';
 
 interface HotelListProps {
@@ -9,10 +9,12 @@ interface HotelListProps {
 }
 
 export const HotelList: React.FC<HotelListProps> = ({ hotels }) => {
-  const [requirements, setRequirements] = useState<PeopleCount>({
-    adults: 1,
+  const [requirements, setRequirements] = useState<Requirements>({
+    adults: 0,
     children: 0,
+    rating: 0,
   });
+
   return (
     <Flex
       direction='column'
@@ -21,13 +23,15 @@ export const HotelList: React.FC<HotelListProps> = ({ hotels }) => {
       w={['95%', '90%']}
     >
       <Filters onChange={(val) => setRequirements(val)} />
-      {hotels.map((hotel) => (
-        <HotelPreview
-          key={hotel.id}
-          hotel={hotel}
-          requirements={requirements}
-        />
-      ))}
+      {hotels
+        .filter((x) => Number(x.starRating) >= requirements.rating)
+        .map((hotel) => (
+          <HotelPreview
+            key={hotel.id}
+            hotel={hotel}
+            requirements={requirements}
+          />
+        ))}
     </Flex>
   );
 };
