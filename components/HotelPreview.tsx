@@ -1,4 +1,4 @@
-import { Box, Flex, Heading } from '@chakra-ui/react';
+import { Box, Flex, Heading, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { getHotelRooms } from '../api/hotels';
@@ -19,6 +19,8 @@ export const HotelPreview: React.FC<HotelPreviewProps> = ({
   requirements,
 }) => {
   const [rooms, setRooms] = useState<Room[]>([]);
+  const bgColor = useColorModeValue('blue.100', 'blue.900');
+
   useEffect(() => {
     if (hotel.id) {
       const fetchHotelRooms = async (id: string) => {
@@ -42,7 +44,8 @@ export const HotelPreview: React.FC<HotelPreviewProps> = ({
 
   return (
     <Flex
-      bg='whiteAlpha.300'
+      // bg='whiteAlpha.300'
+      bg={bgColor}
       mb={[4, 8]}
       p={[4, 8]}
       w='100%'
