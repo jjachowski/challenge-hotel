@@ -1,8 +1,7 @@
-import { Box, Flex, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import { Flex, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 // import { Rating } from 'react-simple-star-rating';
 import { PeopleCountInput } from './PeopleCountInput';
-import ReactStars from 'react-stars';
 import { StarRating } from './StarRating';
 
 export type PeopleCount = {
@@ -35,8 +34,6 @@ export const Filters: React.FC<FiltersProps> = ({ onChange }) => {
       direction={['column', 'row']}
       mb={8}
     >
-      {/* <Flex direction='row' w='400px'>
-      </Flex> */}
       <StarRating onChange={(value) => setRating(value)} />
       <PeopleCountInput label='adults' onChange={(val) => setAdults(val)} />
       <PeopleCountInput label='children' onChange={(val) => setChildren(val)} />
