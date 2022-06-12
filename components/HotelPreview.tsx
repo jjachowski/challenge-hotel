@@ -58,7 +58,7 @@ export const HotelPreview: React.FC<HotelPreviewProps> = ({
         <Box ml={[0, 4]} w='100%'>
           <Flex justifyContent='space-between' w='100%' mb={4}>
             <Heading size='xl'>{hotel.name}</Heading>
-            <StarRating isStatic initialValue={3} />
+            <StarRating isStatic initialValue={Number(hotel.starRating)} />
           </Flex>
 
           <Heading size='md' mb={2}>
